@@ -1,0 +1,6 @@
+# Model registry. Each entry maps an id to an adapter in kabench.models.
+models: []
+# - id: nemo-fastconformer-ka
+#   adapter: nemo_fastconformer
+# - id: whisper-large-v3
+#   adapter: whisper

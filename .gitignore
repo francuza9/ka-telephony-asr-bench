@@ -1,0 +1,10 @@
+data/
+*.wav
+*.mp3
+*.flac
+.env
+results/raw/
+internal/
+*.nemo
+__pycache__/
+.venv/

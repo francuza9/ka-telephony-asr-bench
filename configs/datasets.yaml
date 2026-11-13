@@ -1,0 +1,8 @@
+# Dataset registry. Audio lives under data/ (git-ignored).
+datasets: []
+# - id: fleurs-ka
+#   loader: fleurs
+#   split: test
+# - id: cv-ka
+#   loader: commonvoice
+#   split: test

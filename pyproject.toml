@@ -1,0 +1,39 @@
+[project]
+name = "kabench"
+version = "0.1.0"
+description = "Benchmark of Georgian ASR systems on clean vs telephony (8 kHz G.711) audio"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+dependencies = [
+    "jiwer",
+    "soundfile",
+    "numpy",
+    "pandas",
+    "pyyaml",
+    "typer",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+nemo = ["nemo_toolkit[asr]"]
+whisper = ["openai-whisper", "transformers", "torch"]
+omni = ["omnilingual-asr"]
+api = ["openai", "google-genai", "google-cloud-speech", "azure-cognitiveservices-speech", "elevenlabs"]
+
+[project.scripts]
+kabench = "kabench.cli:app"
+
+[dependency-groups]
+dev = ["pytest"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/kabench"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
