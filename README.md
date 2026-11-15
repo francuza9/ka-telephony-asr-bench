@@ -9,4 +9,3 @@ Benchmark of Georgian (ka) automatic speech recognition systems on clean versus 
 - **C**: real telephony recordings (consented calls).
 - **D**: internal data. Never committed to this repo.
 
-Plan doc: https://claude.ai/artifact/MNGJWKYh5jncHkfV5Vt2BQ
