@@ -13,3 +13,6 @@ aws ec2 terminate-instances --instance-ids "$ID" \
   --query 'TerminatingInstances[0].[InstanceId,CurrentState.Name]' --output text
 aws cloudwatch delete-alarms --alarm-names "asr-bench-idle-$ID"
 echo "Terminated $ID and deleted alarm asr-bench-idle-$ID"
+
+# Usage summary (cached Cost Explorer data; never fails the teardown).
+python3 "$(dirname "$0")/../scripts/aws_usage.py" --brief || true

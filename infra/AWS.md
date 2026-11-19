@@ -42,3 +42,14 @@ infra/teardown.sh <instance-id>
 ## Rule: push, then terminate
 
 Push outputs to GitHub or `s3://satli-asr-bench-100678004861/` (the instance role has access), then terminate. A stopped instance still bills for its 200 GB disk, and the idle alarm only stops, never terminates.
+
+## Usage tracking
+
+```bash
+scripts/aws_usage.py             # credits, spend, GPU-hours, burn rate, live instances/volumes
+scripts/aws_usage.py --json      # machine-readable
+scripts/aws_usage.py --refresh   # bypass the cache
+scripts/aws_usage.py --since 2026-11-01
+```
+
+Read-only: it only calls `get-`/`list-`/`describe-` APIs (`billing get-credits`, Cost Explorer, `ec2 describe-*`). Cost Explorer costs $0.01 per request, so a run makes 1 CE call (2 if `get-credits` fails and it falls back to estimating credits from CE Credit records) and caches results in `.cache/aws_usage.json` for 6 h. CE data lags up to ~24 h. `infra/teardown.sh` prints a `--brief` summary at the end. Warns on instances running > 12 h, credits < 20% left, and credits expiring within 60 days.

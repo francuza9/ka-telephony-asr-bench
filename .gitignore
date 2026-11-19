@@ -8,3 +8,4 @@ internal/
 *.nemo
 __pycache__/
 .venv/
+.cache/
